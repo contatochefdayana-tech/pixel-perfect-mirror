@@ -12,7 +12,9 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as CarrinhoRouteImport } from './routes/carrinho'
 import { Route as CheckoutRouteImport } from './routes/checkout'
+import { Route as MotoboyRouteImport } from './routes/motoboy'
 import { Route as PerfilRouteImport } from './routes/perfil'
+import { Route as ProdutorRouteImport } from './routes/produtor'
 import { Route as PedidosIndexRouteImport } from './routes/pedidos.index'
 import { Route as PedidosIdRouteImport } from './routes/pedidos.$id'
 import { Route as ProdutoresIdRouteImport } from './routes/produtores.$id'
@@ -33,9 +35,19 @@ const CheckoutRoute = CheckoutRouteImport.update({
   path: '/checkout',
   getParentRoute: () => rootRouteImport,
 } as any)
+const MotoboyRoute = MotoboyRouteImport.update({
+  id: '/motoboy',
+  path: '/motoboy',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PerfilRoute = PerfilRouteImport.update({
   id: '/perfil',
   path: '/perfil',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProdutorRoute = ProdutorRouteImport.update({
+  id: '/produtor',
+  path: '/produtor',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PedidosIndexRoute = PedidosIndexRouteImport.update({
@@ -63,7 +75,9 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/carrinho': typeof CarrinhoRoute
   '/checkout': typeof CheckoutRoute
+  '/motoboy': typeof MotoboyRoute
   '/perfil': typeof PerfilRoute
+  '/produtor': typeof ProdutorRoute
   '/pedidos/$id': typeof PedidosIdRoute
   '/produtores/$id': typeof ProdutoresIdRoute
   '/produtos/$id': typeof ProdutosIdRoute
@@ -73,7 +87,9 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/carrinho': typeof CarrinhoRoute
   '/checkout': typeof CheckoutRoute
+  '/motoboy': typeof MotoboyRoute
   '/perfil': typeof PerfilRoute
+  '/produtor': typeof ProdutorRoute
   '/pedidos/$id': typeof PedidosIdRoute
   '/produtores/$id': typeof ProdutoresIdRoute
   '/produtos/$id': typeof ProdutosIdRoute
@@ -84,7 +100,9 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/carrinho': typeof CarrinhoRoute
   '/checkout': typeof CheckoutRoute
+  '/motoboy': typeof MotoboyRoute
   '/perfil': typeof PerfilRoute
+  '/produtor': typeof ProdutorRoute
   '/pedidos/$id': typeof PedidosIdRoute
   '/produtores/$id': typeof ProdutoresIdRoute
   '/produtos/$id': typeof ProdutosIdRoute
@@ -96,7 +114,9 @@ export interface FileRouteTypes {
     | '/'
     | '/carrinho'
     | '/checkout'
+    | '/motoboy'
     | '/perfil'
+    | '/produtor'
     | '/pedidos/$id'
     | '/produtores/$id'
     | '/produtos/$id'
@@ -106,7 +126,9 @@ export interface FileRouteTypes {
     | '/'
     | '/carrinho'
     | '/checkout'
+    | '/motoboy'
     | '/perfil'
+    | '/produtor'
     | '/pedidos/$id'
     | '/produtores/$id'
     | '/produtos/$id'
@@ -116,7 +138,9 @@ export interface FileRouteTypes {
     | '/'
     | '/carrinho'
     | '/checkout'
+    | '/motoboy'
     | '/perfil'
+    | '/produtor'
     | '/pedidos/$id'
     | '/produtores/$id'
     | '/produtos/$id'
@@ -127,7 +151,9 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   CarrinhoRoute: typeof CarrinhoRoute
   CheckoutRoute: typeof CheckoutRoute
+  MotoboyRoute: typeof MotoboyRoute
   PerfilRoute: typeof PerfilRoute
+  ProdutorRoute: typeof ProdutorRoute
   PedidosIdRoute: typeof PedidosIdRoute
   ProdutoresIdRoute: typeof ProdutoresIdRoute
   ProdutosIdRoute: typeof ProdutosIdRoute
@@ -157,11 +183,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CheckoutRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/motoboy': {
+      id: '/motoboy'
+      path: '/motoboy'
+      fullPath: '/motoboy'
+      preLoaderRoute: typeof MotoboyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/perfil': {
       id: '/perfil'
       path: '/perfil'
       fullPath: '/perfil'
       preLoaderRoute: typeof PerfilRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/produtor': {
+      id: '/produtor'
+      path: '/produtor'
+      fullPath: '/produtor'
+      preLoaderRoute: typeof ProdutorRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/pedidos/': {
@@ -199,7 +239,9 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   CarrinhoRoute: CarrinhoRoute,
   CheckoutRoute: CheckoutRoute,
+  MotoboyRoute: MotoboyRoute,
   PerfilRoute: PerfilRoute,
+  ProdutorRoute: ProdutorRoute,
   PedidosIdRoute: PedidosIdRoute,
   ProdutoresIdRoute: ProdutoresIdRoute,
   ProdutosIdRoute: ProdutosIdRoute,
