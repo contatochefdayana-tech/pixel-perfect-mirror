@@ -12,4 +12,8 @@ export default defineConfig({
     // nitro/vite builds from this
     server: { entry: "server" },
   },
+  vite: {
+    // Pre-bundle client libs so late discovery doesn't create a second React copy.
+    optimizeDeps: { include: ["sonner", "zod", "lucide-react", "@radix-ui/react-switch", "@radix-ui/react-slot"] },
+  },
 });
