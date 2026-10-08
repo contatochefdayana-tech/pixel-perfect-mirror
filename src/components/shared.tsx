@@ -8,6 +8,7 @@ import type { CityId, Product } from "@/domain/types";
 import { actions, useAppStore } from "@/state/store";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { PRODUCERS } from "@/data/mock";
 
 export function Rating({ value, className }: { value: number; className?: string }) {
   return (
@@ -47,7 +48,6 @@ export function addWithFeedback(productId: string, qty = 1) {
 }
 
 export function ProductCard({ product }: { product: Product }) {
-  const producer = useAppStore((s) => s.products) && product.producerId;
   const unavailable = !product.available || product.stock <= 0;
   const low = !unavailable && product.stock <= 5;
   return (
@@ -63,7 +63,7 @@ export function ProductCard({ product }: { product: Product }) {
           <Link to="/produtos/$id" params={{ id: product.id }} className="line-clamp-1 font-semibold">{product.name}</Link>
           <Rating value={product.rating} />
         </div>
-        <ProducerName id={producer} />
+        <ProducerName id={product.producerId} />
         <div className="mt-auto flex items-end justify-between pt-2">
           <div>
             {product.compareAtPrice && <div className="text-xs text-muted-foreground line-through">{brl(product.compareAtPrice)}</div>}
@@ -79,7 +79,6 @@ export function ProductCard({ product }: { product: Product }) {
   );
 }
 
-import { PRODUCERS } from "@/data/mock";
 export const getProducer = (id: string) => PRODUCERS.find((p) => p.id === id);
 export function ProducerName({ id }: { id: string }) {
   const p = getProducer(id);
