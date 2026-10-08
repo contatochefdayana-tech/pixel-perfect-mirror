@@ -39,4 +39,4 @@ export const COURIER_SHARE = 0.85;
 /** Chave/versão da persistência local. Incrementar ao mudar o formato dos dados. */
 export const STORAGE_KEY = "feira-virtual:v1";
 
-export const getCity = (id: CityId) => CITIES.find((c) => c.id === id) ?? CITIES[0];
+export const getCity = (id: CityId) => CITIES.find((c) => c.id === id) ?? CITIES[0]!;

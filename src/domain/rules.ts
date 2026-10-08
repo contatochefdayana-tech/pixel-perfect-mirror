@@ -134,7 +134,7 @@ export const DELIVERY_STATUS_LABEL: Record<DeliveryStatus, string> = {
 export function nextDeliveryStatus(s: DeliveryStatus): DeliveryStatus | null {
   const flow: DeliveryStatus[] = ["DISPONIVEL", "ACEITA", "A_CAMINHO", "COLETADO", "EM_ENTREGA", "ENTREGUE"];
   const i = flow.indexOf(s);
-  return i >= 0 && i < flow.length - 1 ? flow[i + 1] : null;
+  return i >= 0 && i < flow.length - 1 ? flow[i + 1]! : null;
 }
 
 /* ---------- Timeline do comprador ---------- */

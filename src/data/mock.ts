@@ -66,7 +66,9 @@ export const COURIERS: Courier[] = [{ id: "moto-1", name: "Carlos (Motoboy)", ve
 export const CURRENT_COURIER_ID = "moto-1";
 export const BUYER_NAME = "Ana Comprador(a)";
 
-const ago = (h: number) => new Date(Date.now() - h * 3600_000).toISOString();
+// Base fixa (evita divergência servidor/navegador na renderização).
+const BASE = Date.parse("2026-10-08T12:00:00-03:00");
+const ago = (h: number) => new Date(BASE - h * 3600_000).toISOString();
 const addr = { name: BUYER_NAME, phone: "(22) 99999-0000", street: "Rua das Pedras", number: "120", neighborhood: "Centro", city: "buzios" as const };
 
 export const SEED_ORDERS: Order[] = [

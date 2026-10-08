@@ -9,7 +9,7 @@ import {
   ORDER_STATUS_LABEL, canCancelOrder, checkStock, courierEarning, nextDeliveryStatus, nextOrderStatus, summarizeCart,
 } from "@/domain/rules";
 import type {
-  Address, CartItem, CityId, DeliveryOptionId, Order, OrderStatus, PaymentMethod, Product, Role,
+  Address, CartItem, CityId, DeliveryOptionId, DeliveryStatus, Order, OrderStatus, PaymentMethod, Product, Role,
 } from "@/domain/types";
 
 export interface AppState {
@@ -24,7 +24,7 @@ export interface AppState {
 }
 
 const initial = (): AppState => ({
-  role: null, city: DEFAULT_CITY, cart: [], products: PRODUCTS, orders: SEED_ORDERS, producerId: PRODUCERS[0].id, orderSeq: 1002,
+  role: null, city: DEFAULT_CITY, cart: [], products: PRODUCTS, orders: SEED_ORDERS, producerId: PRODUCERS[0]!.id, orderSeq: 1002,
 });
 
 let state: AppState = initial();
@@ -187,7 +187,7 @@ export const actions = {
     if (!o) return { ok: false, error: "Entrega não encontrada" };
     const next = nextDeliveryStatus(o.delivery.status);
     if (!next || next === "ACEITA") return { ok: false, error: "Ação inválida" };
-    const labels: Record<string, string> = { A_CAMINHO: "Motoboy a caminho da coleta", COLETADO: "Pedido coletado", EM_ENTREGA: "Em entrega", ENTREGUE: "Entregue" };
+    const labels: Record<DeliveryStatus, string> = { AGUARDANDO: "", DISPONIVEL: "", ACEITA: "", CANCELADA: "", A_CAMINHO: "Motoboy a caminho da coleta", COLETADO: "Pedido coletado", EM_ENTREGA: "Em entrega", ENTREGUE: "Entregue" };
     patchOrder(orderId, (x) => ({
       delivery: { ...x.delivery, status: next },
       status: next === "ENTREGUE" ? "ENTREGUE" : x.status,
