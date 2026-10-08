@@ -52,7 +52,7 @@ function Marketplace() {
           <h1 className="max-w-xl text-4xl font-extrabold leading-[1.05] md:text-6xl">A feira do seu bairro, na palma da mão.</h1>
           <p className="max-w-md text-background/85">Direto do produtor rural pra sua porta — entrega em {getCity(city).name} a partir de {brl(deliveryFee(city))}.</p>
           <div className="flex flex-col gap-2 sm:flex-row">
-            <label className="flex h-12 flex-1 items-center gap-2 rounded-full bg-card px-4 text-foreground shadow-card">
+            <label className="flex h-12 shrink-0 items-center gap-2 rounded-full bg-card sm:flex-1 px-4 text-foreground shadow-card">
               <Search className="size-5 text-muted-foreground" />
               <input value={q} onChange={(e) => setQ(e.target.value)} placeholder="Buscar banana, queijo, mel…" className="h-full flex-1 bg-transparent outline-none" />
             </label>
